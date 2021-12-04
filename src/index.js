@@ -28,6 +28,8 @@ const feedbackHolder = (state={}, action) => {
             return {...state, support: action.payload};
         case 'ADD_COMMENTS':
             return {...state, comments: action.payload};
+        case 'RESET_STATE':
+            return {};
         default:
             return state;
     }

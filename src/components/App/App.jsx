@@ -10,6 +10,8 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
+import SubmissionSuccess from '../SubmissionSuccess/SubmissionSuccess';
+import Admin from '../Admin/Admin';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +58,12 @@ function App() {
         </Route>
         <Route exact path="/review">
           <Review />
+        </Route>
+        <Route exact path="/submissionSuccess">
+          <SubmissionSuccess />
+        </Route>
+        <Route exact path="/admin">
+          <Admin />
         </Route>
       </Router>
     </div>
