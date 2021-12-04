@@ -12,13 +12,31 @@ const feedbackHistoryReducer = (state=[], action) => {
     switch(action.type) {
         case 'FEEDBACK_HISTORY':
             return action.payload;
+        default:
+            return state;
     }
-    return state;
+}
+
+// holds the values of input fields from user
+const feedbackHolder = (state={}, action) => {
+    switch (action.type) {
+        case 'ADD_FEELING':
+            return {...state, feeling: action.payload};
+        case 'ADD_UNDERSTANDING':
+            return {...state, understanding: action.payload};
+        case 'ADD_SUPPORT':
+            return {...state, support: action.payload};
+        case 'ADD_COMMENTS':
+            return {...state, comments: action.payload};
+        default:
+            return state;
+    }
 }
 
 const storeInstance = createStore(
     combineReducers({
-        feedbackHistoryReducer
+        feedbackHistoryReducer,
+        feedbackHolder
     }),
     applyMiddleware(logger)
 );
