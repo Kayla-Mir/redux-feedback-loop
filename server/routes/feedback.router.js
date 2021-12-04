@@ -15,6 +15,31 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log('POST /feedback', req.body);
-})
+    const newFeedback = req.body;
+    const options = { dateStyle: "short"};
+    const timeComplete = new Date().toLocaleString('en-US', options);
+    const sqlText = `
+        INSERT INTO "feedback"
+            ("feeling", "understanding", "support", "comments", "flagged", "date")
+        VALUES
+            ($1, $2, $3, $4, $5, $6)
+        `;
+    const sqlValues = [
+        newFeedback.feeling,
+        newFeedback.understanding,
+        newFeedback.support,
+        newFeedback.comments,
+        newFeedback.flagged,
+        timeComplete
+    ]
+    console.log(sqlValues);
+    pool.query(sqlText, sqlValues)
+        .then((dbRes) => {
+            res.sendStatus(201);
+        }).catch((dbErr) => {
+            console.error(dbErr);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;
