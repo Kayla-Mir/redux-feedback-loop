@@ -9,13 +9,24 @@ function Admin() {
     const feedbackHistory = useSelector((store) => store.feedbackHistoryReducer);
 
     const history = useHistory();
-    
+
     return (
         <div>
             <table>
-            {feedbackHistory.map((feedback) => {
-                return <AdminItem key={feedback.id} feedback={feedback} />
-            })}
+                <thead>
+                    <tr>
+                        <th>Feeling</th>
+                        <th>Comprehension</th>
+                        <th>Support</th>
+                        <th>Comments</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {feedbackHistory.map((feedback) => {
+                        return <AdminItem key={feedback.id} feedback={feedback} />
+                    })}
+                </tbody>
             </table>
         </div>
     )
