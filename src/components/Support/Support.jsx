@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function Support() {
     const [support, setSupport] = useState('');
 
     const supportFeedback = () => {
-        if (support >= 6 || support === ''){
+        if (support >= 6 || support === '') {
             alert('Please choose a number between 1 and 5!')
         } else {
             console.log('support data', support);
@@ -32,7 +32,7 @@ function Support() {
                 id="support"
                 value={support}
                 placeholder={feedbackHolder.support}
-                onChange={(event) => {setSupport(event.target.value)}}
+                onChange={(event) => { setSupport(event.target.value) }}
                 type="number"
             />
             <button onClick={() => history.push('/understanding')}>Back</button>

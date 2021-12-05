@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function Feeling() {
     const [feeling, setFeeling] = useState('');
 
     const feelingFeedback = () => {
-        if (feeling >= 6 || feeling === ''){
+        if (feeling >= 6 || feeling === '') {
             alert('Please choose a number between 1 and 5!')
         } else {
             console.log('feeling data', feeling);
@@ -32,7 +32,7 @@ function Feeling() {
                 id="feeling"
                 value={feeling}
                 placeholder={feedbackHolder.feeling}
-                onChange={(event) => {setFeeling(event.target.value)}}
+                onChange={(event) => { setFeeling(event.target.value) }}
                 type="number"
             />
             <button onClick={feelingFeedback}>Next</button>

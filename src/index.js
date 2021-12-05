@@ -40,7 +40,7 @@ const storeInstance = createStore(
         feedbackHistoryReducer,
         feedbackHolder
     }),
-    applyMiddleware(logger)
+    // applyMiddleware(logger)
 );
 
 ReactDOM.render(

@@ -26,7 +26,6 @@ function App() {
       method: 'GET',
       url: '/feedback'
     }).then((res) => {
-      console.log('in GET route', res.data);
       dispatch({
         type: 'FEEDBACK_HISTORY',
         payload: res.data

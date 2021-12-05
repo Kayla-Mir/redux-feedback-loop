@@ -4,7 +4,11 @@ const pool = require('../modules/pool.js');
 
 router.get('/', (req, res) => {
     console.log('GET /feedback');
-    pool.query('SELECT * from "feedback";')
+    const sqlText = `
+    SELECT * FROM "feedback"
+    ORDER BY "id" ASC;
+    `;
+    pool.query(sqlText)
         .then((dbRes) => {
             res.send(dbRes.rows);
         }).catch((err) => {
@@ -33,6 +37,26 @@ router.post('/', (req, res) => {
         timeComplete
     ]
     console.log(sqlValues);
+    pool.query(sqlText, sqlValues)
+        .then((dbRes) => {
+            res.sendStatus(201);
+        }).catch((dbErr) => {
+            console.error(dbErr);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/', (req, res) => {
+    console.log('PUT /feedback', req.body.flagged);
+    const sqlText = `
+        UPDATE "feedback"
+        SET "flagged" = $1
+        WHERE "id" = $2
+    `;
+    const sqlValues = [
+        !req.body.flagged,
+        req.body.id
+    ];
     pool.query(sqlText, sqlValues)
         .then((dbRes) => {
             res.sendStatus(201);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Review() {

@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 function AdminItem({ feedback, getFeedbackFromDB }) {
 
@@ -21,7 +19,21 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
         } else {
             alert('The feedback was not deleted!')
         }
+    }
 
+    const handleFlag = () => {
+        console.log(feedback);
+            axios({
+                method: 'PUT',
+                url: '/feedback',
+                data: feedback
+            }).then((res) => {
+                feedback.flagged === false ? 
+                alert('Feedback was flagged for review!') : alert('Thank you for reviewing!')
+                getFeedbackFromDB();
+            }).catch((res) => {
+                console.error('error in PUT /feedback', err);
+            })
     }
 
     return (
@@ -30,6 +42,7 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
             <td>{feedback.understanding}</td>
             <td>{feedback.support}</td>
             <td>{feedback.comments}</td>
+            <td>{feedback.flagged === false ? <button onClick={handleFlag}>Flag for Review</button> : <button onClick={handleFlag}>Reviewed</button>}</td>
             <td><button onClick={deleteFeedback}>DELETE</button></td>
         </tr>
     )
