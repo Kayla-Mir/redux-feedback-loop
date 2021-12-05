@@ -15,7 +15,6 @@ import Admin from '../Admin/Admin';
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     getFeedbackFromDB();
@@ -37,12 +36,19 @@ function App() {
     })
   }
 
+  const resetReducer = () => {
+    dispatch({
+      type: 'RESET_STATE'
+    })
+  }
+
   return (
     <div className='App'>
       <Router>
         <header className='App-header'>
           <h1 className='App-title'>Feedback!</h1>
           <h4>Don't forget it!</h4>
+          <Link to='/'><button onClick={resetReducer}>HOME</button></Link>
         </header>
         <Route exact path="/">
           <Link to="/feeling"><button>START</button></Link>
