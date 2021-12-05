@@ -21,7 +21,8 @@
     "react-scripts": "^4.0.1",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"

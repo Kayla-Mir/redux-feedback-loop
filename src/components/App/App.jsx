@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { grey } from '@mui/material/colors';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import HomeIcon from '@mui/icons-material/Home';
 import axios from 'axios';
 import './App.css';
@@ -16,17 +13,6 @@ import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import SubmissionSuccess from '../SubmissionSuccess/SubmissionSuccess';
 import Admin from '../Admin/Admin';
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: grey[100],
-//     },
-//     secondary: {
-//       main: grey[100],
-//     }
-//   }
-// });
 
 function App() {
   const dispatch = useDispatch();
@@ -63,14 +49,28 @@ function App() {
           <h1 className='App-title'>Feedback!</h1>
           <h4>Don't forget it!
             <Link to='/' className="homeButton">
-              <iconButton color="secondary" size="large" onClick={resetReducer} style={{float: 'right'}}>
+              <iconButton onClick={resetReducer} style={{float: 'right'}}>
                 <HomeIcon />
               </iconButton>
             </Link>
           </h4>
         </header>
         <Route exact path="/">
-          <Link to="/feeling"><button>START</button></Link>
+          <Link to="/feeling" style={{ textDecoration: 'none' }}>
+            <Button 
+              size="large"
+              style={{
+                marginTop: 30, 
+                paddingLeft: 50, 
+                paddingRight: 50, 
+                color: 'white', 
+                backgroundColor: '#30b871'
+              }} 
+              variant="contained"
+            >
+              START
+            </Button>
+          </Link>
         </Route>
         <Route exact path="/feeling">
           <Feeling />

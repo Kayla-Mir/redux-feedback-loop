@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector  } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 import AdminItem from "../AdminItem/AdminItem";
 
@@ -11,7 +12,7 @@ function Admin({getFeedbackFromDB}) {
       }, [])
 
     return (
-        <div>
+        <div id="tableArea">
             <table>
                 <thead>
                     <tr>

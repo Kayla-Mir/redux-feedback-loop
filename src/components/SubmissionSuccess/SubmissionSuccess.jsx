@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
-function SubmissionSuccess({getFeedbackFromDB}) {
+function SubmissionSuccess({ getFeedbackFromDB }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -11,12 +12,22 @@ function SubmissionSuccess({getFeedbackFromDB}) {
         });
         history.push('/');
     }
-    
+
     return (
         <div>
             <h1>SUCCESS</h1>
             <h3>Thank you for leaving feedback!</h3>
-            <button onClick={backToTheBeginning}>Leave New Feedback</button>
+            <Button
+                variant="contained"
+                style={{
+                    backgroundColor: '#5fb8af',
+                    color: '#fff',
+                }}
+                size="small"
+                onClick={backToTheBeginning}
+            >
+                New Feedback
+            </Button>
         </div>
     )
 }

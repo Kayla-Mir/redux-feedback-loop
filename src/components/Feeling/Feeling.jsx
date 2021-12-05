@@ -5,6 +5,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 function Feeling() {
     const dispatch = useDispatch();
@@ -59,7 +61,16 @@ function Feeling() {
                     emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
             </Box>
-            <button onClick={feelingFeedback}>Next</button>
+            <Button 
+                variant="contained" 
+                style={{
+                    backgroundColor: '#5fb8af', 
+                    color: '#fff'
+                }} 
+                onClick={feelingFeedback}
+            >
+                Next
+            </Button>
         </div>
     )
 }

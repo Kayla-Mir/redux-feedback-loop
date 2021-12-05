@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 function Review() {
     const history = useHistory();
@@ -61,17 +63,21 @@ function Review() {
                     <p>Understanding: {feedbackHolder.understanding}</p>
                     <p>Support: {feedbackHolder.support}</p>
                     <p>Comments: {feedbackHolder.comments}</p>
-                    <button onClick={handleEditMode}>Edit</button>
+                    <Button
+                        variant="contained"
+                        style={{
+                            backgroundColor: 'grey',
+                            color: '#fff',
+                            marginBottom: 10,
+                        }}
+                        onClick={handleEditMode}
+                    >
+                        Edit
+                    </Button>
                 </div>
                 :
                 <div>
                     <>Your current feeling is: {feedbackHolder.feeling}</>
-                    {/* <input
-                        id="feeling"
-                        placeholder={feedbackHolder.feeling}
-                        onChange={(event) => handleChange(event.target.value, 'feeling')}
-                        type="number"
-                    /><br/> */}
                     <Box
                         sx={{
                             display: 'flex',
@@ -81,19 +87,12 @@ function Review() {
                         }}
                     >
                         <Rating
-                            // value={Number(feeling)}
                             onChange={(event) => { handleChange(event.target.value, 'feeling') }}
                             precision={1}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </Box><br />
                     <>Your current understanding is: {feedbackHolder.understanding}</>
-                    {/* <input
-                        id="understanding"
-                        placeholder={feedbackHolder.understanding}
-                        onChange={(event) => handleChange(event.target.value, 'understanding')}
-                        type="number"
-                    /><br /> */}
                     <Box
                         sx={{
                             display: 'flex',
@@ -103,19 +102,12 @@ function Review() {
                         }}
                     >
                         <Rating
-                            // value={Number(feeling)}
                             onChange={(event) => { handleChange(event.target.value, 'understanding') }}
                             precision={1}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </Box><br />
                     <>Your current level of support is: {feedbackHolder.support}</>
-                    {/* <input
-                        id="support"
-                        placeholder={feedbackHolder.support}
-                        onChange={(event) => handleChange(event.target.value, 'support')}
-                        type="number"
-                    /><br /> */}
                     <Box
                         sx={{
                             display: 'flex',
@@ -125,7 +117,6 @@ function Review() {
                         }}
                     >
                         <Rating
-                            // value={Number(feeling)}
                             onChange={(event) => { handleChange(event.target.value, 'support') }}
                             precision={1}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
@@ -138,10 +129,29 @@ function Review() {
                         onChange={(event) => handleChange(event.target.value, 'comments')}
                         type="text"
                     /><br />
-                    <button onClick={handleEditMode}>Save</button>
+                    <Button
+                        variant="contained"
+                        style={{
+                            backgroundColor: 'grey',
+                            color: '#fff',
+                            marginBottom: 10,
+                        }}
+                        onClick={handleEditMode}
+                    >
+                        Save
+                    </Button>
                 </div>
             }
-            <button onClick={submitFeedback}>Submit</button>
+            <Button
+                variant="contained"
+                style={{
+                    backgroundColor: '#5fb8af',
+                    color: '#fff',
+                }}
+                onClick={submitFeedback}
+            >
+                Submit
+            </Button>
         </div>
     )
 }

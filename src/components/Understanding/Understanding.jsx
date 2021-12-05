@@ -5,6 +5,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 function Understanding() {
     const dispatch = useDispatch();
@@ -37,13 +39,6 @@ function Understanding() {
                 :
                 <></>
             }
-            {/* <input
-                id="understanding"
-                value={understanding}
-                placeholder={feedbackHolder.understanding}
-                onChange={(event) => { setUnderstanding(event.target.value) }}
-                type="number"
-            /> */}
             <Box
                 sx={{
                     display: 'flex',
@@ -59,8 +54,27 @@ function Understanding() {
                     emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
             </Box>
-            <button onClick={() => history.push('/feeling')}>Back</button>
-            <button onClick={understandingFeedback}>Next</button>
+            <Button 
+                variant="contained" 
+                style={{
+                    backgroundColor: 'grey', 
+                    color: '#fff', 
+                    marginRight: 30
+                }} 
+                onClick={() => history.push('/feeling')}
+            >
+                Back
+            </Button>
+            <Button 
+                variant="contained" 
+                style={{
+                    backgroundColor: '#5fb8af', 
+                    color: '#fff'
+                }} 
+                onClick={understandingFeedback}
+            >
+                Next
+            </Button>
         </div>
     )
 }

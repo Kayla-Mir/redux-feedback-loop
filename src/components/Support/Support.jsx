@@ -5,6 +5,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 function Support() {
     const dispatch = useDispatch();
@@ -59,8 +61,27 @@ function Support() {
                     emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
             </Box>
-            <button onClick={() => history.push('/understanding')}>Back</button>
-            <button onClick={supportFeedback}>Next</button>
+            <Button 
+                variant="contained" 
+                style={{
+                    backgroundColor: 'grey', 
+                    color: '#fff', 
+                    marginRight: 30
+                }} 
+                onClick={() => history.push('/understanding')}
+            >
+                Back
+            </Button>
+            <Button 
+                variant="contained" 
+                style={{
+                    backgroundColor: '#5fb8af', 
+                    color: '#fff'
+                }} 
+                onClick={supportFeedback}
+            >
+                Next
+            </Button>
         </div>
     )
 }

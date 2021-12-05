@@ -1,5 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Button from '@material-ui/core/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import swal from 'sweetalert';
 
 function AdminItem({ feedback, getFeedbackFromDB }) {
 
@@ -23,17 +27,17 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
 
     const handleFlag = () => {
         console.log(feedback);
-            axios({
-                method: 'PUT',
-                url: '/feedback',
-                data: feedback
-            }).then((res) => {
-                feedback.flagged === false ? 
+        axios({
+            method: 'PUT',
+            url: '/feedback',
+            data: feedback
+        }).then((res) => {
+            feedback.flagged === false ?
                 alert('Feedback was flagged for review!') : alert('Thank you for reviewing!')
-                getFeedbackFromDB();
-            }).catch((res) => {
-                console.error('error in PUT /feedback', err);
-            })
+            getFeedbackFromDB();
+        }).catch((res) => {
+            console.error('error in PUT /feedback', err);
+        })
     }
 
     return (
@@ -42,8 +46,38 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
             <td>{feedback.understanding}</td>
             <td>{feedback.support}</td>
             <td>{feedback.comments}</td>
-            <td>{feedback.flagged === false ? <button onClick={handleFlag}>Flag for Review</button> : <button onClick={handleFlag}>Reviewed</button>}</td>
-            <td><button onClick={deleteFeedback}>DELETE</button></td>
+            <td>
+                {feedback.flagged === false ?
+                    <Button
+                        size="small"
+                        variant="contained"
+                        style={{
+                            backgroundColor: '#5fb8af',
+                            color: '#fff',
+                        }}
+                        onClick={handleFlag}
+                    >
+                        Flag for Review
+                    </Button>
+                    :
+                    <Button
+                        size="small"
+                        variant="contained"
+                        style={{
+                            backgroundColor: '#499ed6',
+                            color: '#fff',
+                        }}
+                        onClick={handleFlag}
+                    >
+                        Reviewed
+                    </Button>
+                }
+            </td>
+            <td>
+                <IconButton size="medium">
+                    <DeleteIcon style={{ color: '#e65555' }} fontSize="inherit" onClick={deleteFeedback} />
+                </IconButton>
+            </td>
         </tr>
     )
 }

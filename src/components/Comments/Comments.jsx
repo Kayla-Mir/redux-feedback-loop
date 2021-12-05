@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 function Comments() {
     const dispatch = useDispatch();
@@ -32,8 +34,27 @@ function Comments() {
                 type="text"
             />
             <div>
-                <button onClick={() => history.push('/support')}>Back</button>
-                <button onClick={commentsFeedback}>Next</button>
+                <Button
+                    variant="contained"
+                    style={{
+                        backgroundColor: 'grey',
+                        color: '#fff',
+                        marginRight: 30
+                    }}
+                    onClick={() => history.push('/support')}
+                >
+                    Back
+                </Button>
+                <Button
+                    variant="contained"
+                    style={{
+                        backgroundColor: '#5fb8af',
+                        color: '#fff'
+                    }}
+                    onClick={commentsFeedback}
+                >
+                    Next
+                </Button>
             </div>
         </div>
     )
