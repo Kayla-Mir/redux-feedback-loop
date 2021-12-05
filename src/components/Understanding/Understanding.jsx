@@ -12,12 +12,15 @@ function Understanding() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // calls the feedback holder to display on the dom if they go back to this page
     const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
+    // sets a piece of state to send to the feedback holder to update the value
     const [understanding, setUnderstanding] = useState('');
 
+    // updates the reducer with the rating and prevents a null value and moves us to support
     const understandingFeedback = () => {
-        if (understanding >= 6 || understanding === '') {
+        if (understanding === '') {
             swal('Please choose a number between 1 and 5!', {icon: 'error'})
         } else {
             console.log('understanding data', understanding);

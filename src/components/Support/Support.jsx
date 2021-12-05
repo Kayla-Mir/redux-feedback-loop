@@ -11,13 +11,16 @@ import swal from 'sweetalert';
 function Support() {
     const dispatch = useDispatch();
     const history = useHistory();
-
+         
+    // calls the feedback holder to display on the dom if they go back to this page
     const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
+    // sets a piece of state to send to the feedback holder to update the value
     const [support, setSupport] = useState('');
 
+    // updates the reducer with the rating and prevents a null value and moves us to comments
     const supportFeedback = () => {
-        if (support >= 6 || support === '') {
+        if (support === '') {
             swal('Please choose a number between 1 and 5!', {icon: 'error'})
         } else {
             console.log('support data', support);
@@ -39,13 +42,6 @@ function Support() {
                 :
                 <></>
             }
-            {/* <input
-                id="support"
-                value={support}
-                placeholder={feedbackHolder.support}
-                onChange={(event) => { setSupport(event.target.value) }}
-                type="number"
-            /> */}
             <Box
                 sx={{
                     display: 'flex',

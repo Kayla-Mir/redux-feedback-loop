@@ -11,10 +11,13 @@ import swal from 'sweetalert';
 function Review() {
     const history = useHistory();
 
+    // calls the feedback holder to display on the dom
     const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
+    // sets a piece of state to toggle editmode
     const [editMode, setEditMode] = useState(false);
 
+    // new variable for sending data to the database
     const feedbackForDB = {
         feeling: feedbackHolder.feeling,
         understanding: feedbackHolder.understanding,
@@ -23,6 +26,7 @@ function Review() {
         flagged: false
     }
 
+    // sends feedback on a POST route for the database and moves us to the success page
     const submitFeedback = () => {
         console.log('new feedback', feedbackForDB);
         axios({
@@ -37,10 +41,12 @@ function Review() {
         });
     }
 
+    // toggles edit mode
     const handleEditMode = () => {
         setEditMode(!editMode);
     }
 
+    // updates the feedbackHolder reducer with the new value, switch statement based on type assigned on the input
     const handleChange = (value, type) => {
         switch (type) {
             case 'feeling':

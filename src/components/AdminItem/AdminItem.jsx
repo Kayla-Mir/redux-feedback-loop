@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import swal from 'sweetalert';
 
 function AdminItem({ feedback, getFeedbackFromDB }) {
+    // sends the feedback object prop to be deleted and calls the get function in app.jsx
     const deleteFeedback = () => {
         swal({
             title: "Are you sure?",
@@ -24,14 +25,15 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
                 }).then((res) => {
                     getFeedbackFromDB();
                 }).catch((err) => {
-                    console.error('error in DELETE /feedback', err)
+                    console.error('error in DELETE /feedback', err);
                 });
             } else {
-                swal('The feedback was not deleted!')
+                swal('The feedback was not deleted!');
             }
         });
     }
 
+    // flags or unflags the feedback when the button is clicked
     const handleFlag = () => {
         console.log(feedback);
         axios({
@@ -40,7 +42,9 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
             data: feedback
         }).then((res) => {
             feedback.flagged === false ?
-                swal('Feedback was flagged for review!', {icon: 'success'}) : swal('Thank you for reviewing!', {icon: 'success'})
+                swal('Feedback was flagged for review!', { icon: 'success' }) 
+                : 
+                swal('Thank you for reviewing!', { icon: 'success' });
             getFeedbackFromDB();
         }).catch((res) => {
             console.error('error in PUT /feedback', err);

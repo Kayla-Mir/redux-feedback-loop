@@ -8,6 +8,7 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
+// stores the database data
 const feedbackHistoryReducer = (state = [], action) => {
     switch (action.type) {
         case 'FEEDBACK_HISTORY':

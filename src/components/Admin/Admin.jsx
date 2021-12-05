@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import { useSelector  } from 'react-redux';
-import Button from '@material-ui/core/Button';
+import { useSelector } from 'react-redux';
 
 import AdminItem from "../AdminItem/AdminItem";
 
-function Admin({getFeedbackFromDB}) {
+function Admin({ getFeedbackFromDB }) {
     const feedbackHistory = useSelector((store) => store.feedbackHistoryReducer);
 
     useEffect(() => {
         getFeedbackFromDB();
-      }, [])
+    }, [])
 
     return (
         <div id="tableArea">
@@ -25,6 +24,7 @@ function Admin({getFeedbackFromDB}) {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* loops through the feedback thats stored in the history reducer */}
                     {feedbackHistory.map((feedback) => {
                         return <AdminItem key={feedback.id} getFeedbackFromDB={getFeedbackFromDB} feedback={feedback} />
                     })}

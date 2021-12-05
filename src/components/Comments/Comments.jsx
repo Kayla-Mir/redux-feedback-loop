@@ -2,16 +2,18 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import swal from 'sweetalert';
 
 function Comments() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // calls the feedback holder to display on the dom if they go back to this page
     const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
+    // sets a piece of state to send to the feedback holder to update the value
     const [comments, setComments] = useState('');
 
+    // updates the reducer with the comments and moves us to review
     const commentsFeedback = () => {
         console.log('comments data', comments);
         dispatch({

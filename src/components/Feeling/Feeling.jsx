@@ -12,12 +12,15 @@ function Feeling() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // calls the feedback holder to display on the dom if they go back to this page
     const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
+    // sets a piece of state to use to send to the feedback holder for updating the value
     const [feeling, setFeeling] = useState('');
 
+    // updates the reducer with the rating and prevents a null value and moves us to understanding
     const feelingFeedback = () => {
-        if (feeling >= 6 || feeling === '') {
+        if (feeling === '') {
             swal('Please choose a number between 1 and 5!', {icon: 'error'})
         } else {
             console.log('feeling data', feeling);
@@ -39,13 +42,6 @@ function Feeling() {
                 : 
                 <></>
             }
-            {/* <input
-                id="feeling"
-                value={feeling}
-                placeholder={feedbackHolder.feeling}
-                onChange={(event) => { setFeeling(event.target.value) }}
-                type="number"
-            /> */}
             <Box
                 sx={{
                     display: 'flex',

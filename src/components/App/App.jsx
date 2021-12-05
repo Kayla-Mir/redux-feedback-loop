@@ -30,16 +30,17 @@ function App() {
       dispatch({
         type: 'FEEDBACK_HISTORY',
         payload: res.data
-      })
+      });
     }).catch((err) => {
       console.error('error GET route', err);
-    })
+    });
   }
 
+  // resets the holding reducer if you click the home button
   const resetReducer = () => {
     dispatch({
       type: 'RESET_STATE'
-    })
+    });
   }
 
   return (
@@ -49,7 +50,7 @@ function App() {
           <h1 className='App-title'>Feedback!</h1>
           <h4>Don't forget it!
             <Link to='/' className="homeButton">
-              <iconButton onClick={resetReducer} style={{float: 'right'}}>
+              <iconButton onClick={resetReducer} style={{ float: 'right' }}>
                 <HomeIcon />
               </iconButton>
             </Link>
@@ -57,15 +58,15 @@ function App() {
         </header>
         <Route exact path="/">
           <Link to="/feeling" style={{ textDecoration: 'none' }}>
-            <Button 
+            <Button
               size="large"
               style={{
-                marginTop: 30, 
-                paddingLeft: 50, 
-                paddingRight: 50, 
-                color: 'white', 
+                marginTop: 30,
+                paddingLeft: 50,
+                paddingRight: 50,
+                color: 'white',
                 backgroundColor: '#30b871'
-              }} 
+              }}
               variant="contained"
             >
               START
@@ -88,10 +89,10 @@ function App() {
           <Review />
         </Route>
         <Route exact path="/submissionSuccess">
-          <SubmissionSuccess getFeedbackFromDB={getFeedbackFromDB}/>
+          <SubmissionSuccess getFeedbackFromDB={getFeedbackFromDB} />
         </Route>
         <Route exact path="/admin">
-          <Admin getFeedbackFromDB={getFeedbackFromDB}/>
+          <Admin getFeedbackFromDB={getFeedbackFromDB} />
         </Route>
       </Router>
     </div>

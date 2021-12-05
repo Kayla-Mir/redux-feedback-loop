@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
+// Gets the stored feedback from the db, sorted by id
 router.get('/', (req, res) => {
     console.log('GET /feedback');
     const sqlText = `
-    SELECT * FROM "feedback"
-    ORDER BY "id" ASC;
+        SELECT * FROM "feedback"
+        ORDER BY "id" ASC;
     `;
     pool.query(sqlText)
         .then((dbRes) => {
@@ -17,16 +18,17 @@ router.get('/', (req, res) => {
         });
 });
 
+// adds new feedback to the database
 router.post('/', (req, res) => {
     console.log('POST /feedback', req.body);
     const newFeedback = req.body;
     const options = { dateStyle: "short"};
     const timeComplete = new Date().toLocaleString('en-US', options);
     const sqlText = `
-        INSERT INTO "feedback"
-            ("feeling", "understanding", "support", "comments", "flagged", "date")
-        VALUES
-            ($1, $2, $3, $4, $5, $6)
+            INSERT INTO "feedback"
+                ("feeling", "understanding", "support", "comments", "flagged", "date")
+            VALUES
+                ($1, $2, $3, $4, $5, $6)
         `;
     const sqlValues = [
         newFeedback.feeling,
@@ -35,7 +37,7 @@ router.post('/', (req, res) => {
         newFeedback.comments,
         newFeedback.flagged,
         timeComplete
-    ]
+    ];
     console.log(sqlValues);
     pool.query(sqlText, sqlValues)
         .then((dbRes) => {
@@ -46,6 +48,7 @@ router.post('/', (req, res) => {
         });
 });
 
+// updates the flagged part of the feedback from the admin page
 router.put('/', (req, res) => {
     console.log('PUT /feedback', req.body.flagged);
     const sqlText = `
@@ -66,6 +69,7 @@ router.put('/', (req, res) => {
         });
 });
 
+// deletes the feedback based on id
 router.delete('/', (req, res) => {
     console.log('DELETE /feedback', req.body.id);
     const feedbackToDelete = req.body.id;
@@ -81,7 +85,7 @@ router.delete('/', (req, res) => {
             res.sendStatus(201);
         }).catch((dbErr) => {
             console.error(dbErr);
-            res.sendStatus(500)
+            res.sendStatus(500);
         });
 });
 

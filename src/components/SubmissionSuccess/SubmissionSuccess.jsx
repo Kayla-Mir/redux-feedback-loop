@@ -6,6 +6,7 @@ function SubmissionSuccess({ getFeedbackFromDB }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // button that sends you back to the state page and resets the holding reducer
     const backToTheBeginning = () => {
         dispatch({
             type: 'RESET_STATE',
