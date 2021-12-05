@@ -42,4 +42,23 @@ router.post('/', (req, res) => {
         });
 });
 
+router.delete('/', (req, res) => {
+    console.log('DELETE /feedback', req.body.id);
+    const feedbackToDelete = req.body.id;
+    const sqlText = `
+        DELETE FROM "feedback"
+        WHERE "id" = $1;
+    `;
+    const sqlValues = [
+        feedbackToDelete
+    ];
+    pool.query(sqlText, sqlValues)
+        .then((dbRes) => {
+            res.sendStatus(201);
+        }).catch((dbErr) => {
+            console.error(dbErr);
+            res.sendStatus(500)
+        });
+});
+
 module.exports = router;

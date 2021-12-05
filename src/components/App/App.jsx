@@ -69,10 +69,10 @@ function App() {
           <Review />
         </Route>
         <Route exact path="/submissionSuccess">
-          <SubmissionSuccess />
+          <SubmissionSuccess getFeedbackFromDB={getFeedbackFromDB}/>
         </Route>
         <Route exact path="/admin">
-          <Admin />
+          <Admin getFeedbackFromDB={getFeedbackFromDB}/>
         </Route>
       </Router>
     </div>
