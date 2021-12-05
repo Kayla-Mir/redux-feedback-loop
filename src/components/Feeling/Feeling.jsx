@@ -1,10 +1,12 @@
 import {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Feeling() {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
     const [feeling, setFeeling] = useState('');
 
@@ -29,6 +31,7 @@ function Feeling() {
             <input
                 id="feeling"
                 value={feeling}
+                placeholder={feedbackHolder.feeling}
                 onChange={(event) => {setFeeling(event.target.value)}}
                 type="number"
             />

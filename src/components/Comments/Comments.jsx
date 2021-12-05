@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Comments() {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
     const [comments, setComments] = useState('');
 
@@ -25,9 +27,11 @@ function Comments() {
             <input
                 id="comments"
                 value={comments}
+                placeholder={feedbackHolder.comments}
                 onChange={(event) => { setComments(event.target.value) }}
                 type="text"
             />
+            <button onClick={() => history.push('/support')}>Back</button>
             <button onClick={commentsFeedback}>Next</button>
         </div>
     )

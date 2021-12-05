@@ -1,10 +1,12 @@
 import {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function Understanding() {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const feedbackHolder = useSelector((store) => store.feedbackHolder);
 
     const [understanding, setUnderstanding] = useState('');
 
@@ -29,9 +31,11 @@ function Understanding() {
             <input
                 id="understanding"
                 value={understanding}
+                placeholder={feedbackHolder.understanding}
                 onChange={(event) => {setUnderstanding(event.target.value)}}
                 type="number"
             />
+            <button onClick={() => history.push('/feeling')}>Back</button>
             <button onClick={understandingFeedback}>Next</button>
         </div>
     )
