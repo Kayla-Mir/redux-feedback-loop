@@ -8,8 +8,8 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-const feedbackHistoryReducer = (state=[], action) => {
-    switch(action.type) {
+const feedbackHistoryReducer = (state = [], action) => {
+    switch (action.type) {
         case 'FEEDBACK_HISTORY':
             return action.payload;
         default:
@@ -18,16 +18,16 @@ const feedbackHistoryReducer = (state=[], action) => {
 }
 
 // holds the values of input fields from user
-const feedbackHolder = (state={}, action) => {
+const feedbackHolder = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_FEELING':
-            return {...state, feeling: action.payload};
+            return { ...state, feeling: action.payload };
         case 'ADD_UNDERSTANDING':
-            return {...state, understanding: action.payload};
+            return { ...state, understanding: action.payload };
         case 'ADD_SUPPORT':
-            return {...state, support: action.payload};
+            return { ...state, support: action.payload };
         case 'ADD_COMMENTS':
-            return {...state, comments: action.payload};
+            return { ...state, comments: action.payload };
         case 'RESET_STATE':
             return {};
         default:
@@ -46,7 +46,7 @@ const storeInstance = createStore(
 ReactDOM.render(
     <Provider store={storeInstance}>
         <App />
-    </Provider>, 
+    </Provider>,
     document.getElementById('root')
 );
 registerServiceWorker();

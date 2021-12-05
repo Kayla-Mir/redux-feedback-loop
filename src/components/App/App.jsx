@@ -45,6 +45,9 @@ function App() {
           <h4>Don't forget it!</h4>
         </header>
         <Route exact path="/">
+          <Link to="/feeling"><button>START</button></Link>
+        </Route>
+        <Route exact path="/feeling">
           <Feeling />
         </Route>
         <Route exact path="/understanding">

@@ -9,7 +9,7 @@ function Feeling() {
     const [feeling, setFeeling] = useState('');
 
     const feelingFeedback = () => {
-        if (feeling >= 6){
+        if (feeling >= 6 || feeling === ''){
             alert('Please choose a number between 1 and 5!')
         } else {
             console.log('feeling data', feeling);

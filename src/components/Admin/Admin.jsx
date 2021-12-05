@@ -10,6 +10,7 @@ function Admin() {
 
     const history = useHistory();
 
+    // BEANS WASNT THERE
     return (
         <div>
             <table>

@@ -9,7 +9,7 @@ function Support() {
     const [support, setSupport] = useState('');
 
     const supportFeedback = () => {
-        if (support >= 6){
+        if (support >= 6 || support === ''){
             alert('Please choose a number between 1 and 5!')
         } else {
             console.log('support data', support);

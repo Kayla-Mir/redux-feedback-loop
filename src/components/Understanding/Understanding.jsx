@@ -9,7 +9,7 @@ function Understanding() {
     const [understanding, setUnderstanding] = useState('');
 
     const understandingFeedback = () => {
-        if (understanding >= 6){
+        if (understanding >= 6 || understanding === ''){
             alert('Please choose a number between 1 and 5!')
         } else {
             console.log('understanding data', understanding);
