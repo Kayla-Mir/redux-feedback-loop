@@ -23,16 +23,18 @@ function Comments() {
     return (
         <div>
             <h1>Any comments you want to leave?</h1>
-            <label htmlFor="comments">Comments: </label>
-            <input
-                id="comments"
+            <p>Comments: </p>
+            <textarea
+                id="commentInput"
                 value={comments}
                 placeholder={feedbackHolder.comments}
                 onChange={(event) => { setComments(event.target.value) }}
                 type="text"
             />
-            <button onClick={() => history.push('/support')}>Back</button>
-            <button onClick={commentsFeedback}>Next</button>
+            <div>
+                <button onClick={() => history.push('/support')}>Back</button>
+                <button onClick={commentsFeedback}>Next</button>
+            </div>
         </div>
     )
 }

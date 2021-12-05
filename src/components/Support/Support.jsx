@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 
 function Support() {
     const dispatch = useDispatch();
@@ -27,14 +31,34 @@ function Support() {
     return (
         <div>
             <h1>How well are you being supported?</h1>
-            <label htmlFor="support">Support (1-5): </label>
-            <input
+            <p>Support (1-5): </p>
+            {feedbackHolder.support ?
+                <h5 className="lastRating">Your last rating: {feedbackHolder.support}</h5>
+                :
+                <></>
+            }
+            {/* <input
                 id="support"
                 value={support}
                 placeholder={feedbackHolder.support}
                 onChange={(event) => { setSupport(event.target.value) }}
                 type="number"
-            />
+            /> */}
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    paddingBottom: 2,
+                }}
+            >
+                <Rating
+                    value={Number(support)}
+                    onChange={(event) => { setSupport(event.target.value) }}
+                    precision={1}
+                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                />
+            </Box>
             <button onClick={() => history.push('/understanding')}>Back</button>
             <button onClick={supportFeedback}>Next</button>
         </div>

@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 
 function Feeling() {
     const dispatch = useDispatch();
@@ -27,14 +31,34 @@ function Feeling() {
     return (
         <div>
             <h1>How are you feeling today?</h1>
-            <label htmlFor="feeling">Feeling (1-5): </label>
-            <input
+            <p>Feeling (1-5): </p>
+            {feedbackHolder.feeling ? 
+                <h5 className="lastRating">Your last rating: {feedbackHolder.feeling}</h5> 
+                : 
+                <></>
+            }
+            {/* <input
                 id="feeling"
                 value={feeling}
                 placeholder={feedbackHolder.feeling}
                 onChange={(event) => { setFeeling(event.target.value) }}
                 type="number"
-            />
+            /> */}
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    paddingBottom: 2,
+                }}
+            >
+                <Rating
+                    value={Number(feeling)}
+                    onChange={(event) => { setFeeling(event.target.value) }}
+                    precision={1}
+                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                />
+            </Box>
             <button onClick={feelingFeedback}>Next</button>
         </div>
     )

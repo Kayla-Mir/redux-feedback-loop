@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { grey } from '@mui/material/colors';
+// import Button from '@material-ui/core/Button';
+import HomeIcon from '@mui/icons-material/Home';
 import axios from 'axios';
 import './App.css';
 
@@ -12,6 +16,17 @@ import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import SubmissionSuccess from '../SubmissionSuccess/SubmissionSuccess';
 import Admin from '../Admin/Admin';
+
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: grey[100],
+//     },
+//     secondary: {
+//       main: grey[100],
+//     }
+//   }
+// });
 
 function App() {
   const dispatch = useDispatch();
@@ -46,8 +61,13 @@ function App() {
       <Router>
         <header className='App-header'>
           <h1 className='App-title'>Feedback!</h1>
-          <h4>Don't forget it!</h4>
-          <Link to='/'><button onClick={resetReducer}>HOME</button></Link>
+          <h4>Don't forget it!
+            <Link to='/' className="homeButton">
+              <iconButton color="secondary" size="large" onClick={resetReducer} style={{float: 'right'}}>
+                <HomeIcon />
+              </iconButton>
+            </Link>
+          </h4>
         </header>
         <Route exact path="/">
           <Link to="/feeling"><button>START</button></Link>

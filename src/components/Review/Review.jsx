@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 
 function Review() {
     const history = useHistory();
@@ -62,34 +65,79 @@ function Review() {
                 </div>
                 :
                 <div>
-                    <label htmlFor="feeling">Feeling: </label>
-                    <input
+                    <>Your current feeling is: {feedbackHolder.feeling}</>
+                    {/* <input
                         id="feeling"
                         placeholder={feedbackHolder.feeling}
                         onChange={(event) => handleChange(event.target.value, 'feeling')}
                         type="number"
-                    /><br/>
-                    <label htmlFor="understanding">Understanding: </label>
-                    <input
+                    /><br/> */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignSelf: 'center',
+                            justifyContent: 'center',
+                            paddingBottom: 2,
+                        }}
+                    >
+                        <Rating
+                            // value={Number(feeling)}
+                            onChange={(event) => { handleChange(event.target.value, 'feeling') }}
+                            precision={1}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
+                    </Box><br />
+                    <>Your current understanding is: {feedbackHolder.understanding}</>
+                    {/* <input
                         id="understanding"
                         placeholder={feedbackHolder.understanding}
                         onChange={(event) => handleChange(event.target.value, 'understanding')}
                         type="number"
-                    /><br/>
-                    <label htmlFor="support">Support: </label>
-                    <input
+                    /><br /> */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignSelf: 'center',
+                            justifyContent: 'center',
+                            paddingBottom: 2,
+                        }}
+                    >
+                        <Rating
+                            // value={Number(feeling)}
+                            onChange={(event) => { handleChange(event.target.value, 'understanding') }}
+                            precision={1}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
+                    </Box><br />
+                    <>Your current level of support is: {feedbackHolder.support}</>
+                    {/* <input
                         id="support"
                         placeholder={feedbackHolder.support}
                         onChange={(event) => handleChange(event.target.value, 'support')}
                         type="number"
-                    /><br/>
-                    <label htmlFor="comments">Comments: </label>
-                    <input
+                    /><br /> */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignSelf: 'center',
+                            justifyContent: 'center',
+                            paddingBottom: 2,
+                        }}
+                    >
+                        <Rating
+                            // value={Number(feeling)}
+                            onChange={(event) => { handleChange(event.target.value, 'support') }}
+                            precision={1}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
+                    </Box><br />
+                    <p id="reviewComments">Comments if any: </p>
+                    <textarea
                         id="comments"
                         placeholder={feedbackHolder.comments}
                         onChange={(event) => handleChange(event.target.value, 'comments')}
                         type="text"
-                    /><br/>
+                    /><br />
                     <button onClick={handleEditMode}>Save</button>
                 </div>
             }
