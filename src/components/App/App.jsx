@@ -15,88 +15,88 @@ import SubmissionSuccess from '../SubmissionSuccess/SubmissionSuccess';
 import Admin from '../Admin/Admin';
 
 function App() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    getFeedbackFromDB();
-  }, [])
+    useEffect(() => {
+        getFeedbackFromDB();
+    }, [])
 
-  // holds the submitted feedback from the database for displaying later
-  const getFeedbackFromDB = () => {
-    axios({
-      method: 'GET',
-      url: '/feedback'
-    }).then((res) => {
-      dispatch({
-        type: 'FEEDBACK_HISTORY',
-        payload: res.data
-      });
-    }).catch((err) => {
-      console.error('error GET route', err);
-    });
-  }
+    // holds the submitted feedback from the database for displaying later
+    const getFeedbackFromDB = () => {
+        axios({
+            method: 'GET',
+            url: '/feedback'
+        }).then((res) => {
+            dispatch({
+                type: 'FEEDBACK_HISTORY',
+                payload: res.data
+            });
+        }).catch((err) => {
+            console.error('error GET route', err);
+        });
+    }
 
-  // resets the holding reducer if you click the home button
-  const resetReducer = () => {
-    dispatch({
-      type: 'RESET_STATE'
-    });
-  }
+    // resets the holding reducer if you click the home button
+    const resetReducer = () => {
+        dispatch({
+            type: 'RESET_STATE'
+        });
+    }
 
-  return (
-    <div className='App'>
-      <Router>
-        <header className='App-header'>
-          <h1 className='App-title'>Feedback!</h1>
-          <h4>Don't forget it!
-            <Link to='/' className="homeButton">
-              <iconButton onClick={resetReducer} style={{ float: 'right' }}>
-                <HomeIcon />
-              </iconButton>
-            </Link>
-          </h4>
-        </header>
-        <Route exact path="/">
-          <Link to="/feeling" style={{ textDecoration: 'none' }}>
-            <Button
-              size="large"
-              style={{
-                marginTop: 30,
-                paddingLeft: 50,
-                paddingRight: 50,
-                color: 'white',
-                backgroundColor: '#30b871'
-              }}
-              variant="contained"
-            >
-              START
-            </Button>
-          </Link>
-        </Route>
-        <Route exact path="/feeling">
-          <Feeling />
-        </Route>
-        <Route exact path="/understanding">
-          <Understanding />
-        </Route>
-        <Route exact path="/support">
-          <Support />
-        </Route>
-        <Route exact path="/comments">
-          <Comments />
-        </Route>
-        <Route exact path="/review">
-          <Review />
-        </Route>
-        <Route exact path="/submissionSuccess">
-          <SubmissionSuccess getFeedbackFromDB={getFeedbackFromDB} />
-        </Route>
-        <Route exact path="/admin">
-          <Admin getFeedbackFromDB={getFeedbackFromDB} />
-        </Route>
-      </Router>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <Router>
+                <header className='App-header'>
+                    <h1 className='App-title'>Feedback!</h1>
+                    <h4>Don't forget it!
+                        <Link to='/' className="homeButton">
+                            <iconButton onClick={resetReducer} style={{ float: 'right' }}>
+                                <HomeIcon />
+                            </iconButton>
+                        </Link>
+                    </h4>
+                </header>
+                <Route exact path="/">
+                    <Link to="/feeling" style={{ textDecoration: 'none' }}>
+                        <Button
+                            size="large"
+                            style={{
+                                marginTop: 30,
+                                paddingLeft: 50,
+                                paddingRight: 50,
+                                color: 'white',
+                                backgroundColor: '#30b871'
+                            }}
+                            variant="contained"
+                        >
+                            START
+                        </Button>
+                    </Link>
+                </Route>
+                <Route exact path="/feeling">
+                    <Feeling />
+                </Route>
+                <Route exact path="/understanding">
+                    <Understanding />
+                </Route>
+                <Route exact path="/support">
+                    <Support />
+                </Route>
+                <Route exact path="/comments">
+                    <Comments />
+                </Route>
+                <Route exact path="/review">
+                    <Review />
+                </Route>
+                <Route exact path="/submissionSuccess">
+                    <SubmissionSuccess getFeedbackFromDB={getFeedbackFromDB} />
+                </Route>
+                <Route exact path="/admin">
+                    <Admin getFeedbackFromDB={getFeedbackFromDB} />
+                </Route>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
