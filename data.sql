@@ -14,5 +14,8 @@ CREATE TABLE "feedback" (
 ); 
 
 -- Sample feedback item
-INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-VALUES (4, 4, 5, 'Doing Great!');
+INSERT INTO "feedback" 
+  ("feeling", "understanding", "support", "comments", "flagged")
+VALUES 
+  (4, 4, 5, 'Doing Great!', false),
+  (3, 1, 2, 'Not so hot', true);
