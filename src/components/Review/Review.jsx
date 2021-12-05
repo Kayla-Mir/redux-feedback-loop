@@ -24,14 +24,14 @@ function Review() {
     }
 
     const submitFeedback = () => {
-        console.log('feedback', feedbackHolder);
         console.log('new feedback', feedbackForDB);
         axios({
             method: 'POST',
             url: '/feedback',
             data: feedbackForDB
         }).then((res) => {
-            history.push('/submissionSuccess')
+            swal('Thank you for your review!', {icon: 'success'});
+            history.push('/submissionSuccess');
         }).catch((err) => {
             console.error('error in POST /feedback', err)
         });

@@ -18,7 +18,7 @@ function Support() {
 
     const supportFeedback = () => {
         if (support >= 6 || support === '') {
-            alert('Please choose a number between 1 and 5!')
+            swal('Please choose a number between 1 and 5!', {icon: 'error'})
         } else {
             console.log('support data', support);
             dispatch({

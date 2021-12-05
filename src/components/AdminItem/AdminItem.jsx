@@ -6,23 +6,30 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import swal from 'sweetalert';
 
 function AdminItem({ feedback, getFeedbackFromDB }) {
-
     const deleteFeedback = () => {
-        const confirm = window.confirm('Are you sure you want to delete feedback?');
-        if (confirm == true) {
-            axios({
-                method: 'DELETE',
-                url: '/feedback',
-                data: feedback
-            }).then((res) => {
-                alert('Feedback was deleted!')
-                getFeedbackFromDB();
-            }).catch((err) => {
-                console.error('error in DELETE /feedback', err)
-            });
-        } else {
-            alert('The feedback was not deleted!')
-        }
+        swal({
+            title: "Are you sure?",
+            text: "The feedback will be deleted!",
+            icon: "warning",
+            buttons: [true, "Confirm"]
+        }).then((toDelete) => {
+            if (toDelete) {
+                swal("Your task has been deleted!", {
+                    icon: "success"
+                });
+                axios({
+                    method: 'DELETE',
+                    url: '/feedback',
+                    data: feedback
+                }).then((res) => {
+                    getFeedbackFromDB();
+                }).catch((err) => {
+                    console.error('error in DELETE /feedback', err)
+                });
+            } else {
+                swal('The feedback was not deleted!')
+            }
+        });
     }
 
     const handleFlag = () => {
@@ -33,7 +40,7 @@ function AdminItem({ feedback, getFeedbackFromDB }) {
             data: feedback
         }).then((res) => {
             feedback.flagged === false ?
-                alert('Feedback was flagged for review!') : alert('Thank you for reviewing!')
+                swal('Feedback was flagged for review!', {icon: 'success'}) : swal('Thank you for reviewing!', {icon: 'success'})
             getFeedbackFromDB();
         }).catch((res) => {
             console.error('error in PUT /feedback', err);

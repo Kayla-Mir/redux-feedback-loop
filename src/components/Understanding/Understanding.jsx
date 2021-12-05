@@ -18,7 +18,7 @@ function Understanding() {
 
     const understandingFeedback = () => {
         if (understanding >= 6 || understanding === '') {
-            alert('Please choose a number between 1 and 5!')
+            swal('Please choose a number between 1 and 5!', {icon: 'error'})
         } else {
             console.log('understanding data', understanding);
             dispatch({
