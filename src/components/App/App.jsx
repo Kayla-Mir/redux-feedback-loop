@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@mui/icons-material/Home';
+import { IconButton } from '@material-ui/core';
 import axios from 'axios';
 import './App.css';
 
@@ -50,9 +51,9 @@ function App() {
                     <h1 className='App-title'>Feedback!</h1>
                     <h4>Don't forget it!
                         <Link to='/' className="homeButton">
-                            <iconButton onClick={resetReducer} style={{ float: 'right' }}>
+                            <IconButton onClick={resetReducer} style={{ float: 'right' }}>
                                 <HomeIcon />
-                            </iconButton>
+                            </IconButton>
                         </Link>
                     </h4>
                 </header>
